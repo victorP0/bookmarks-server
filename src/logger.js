@@ -17,3 +17,4 @@ if (!['production', 'test'].includes(NODE_ENV)) {
 }
 
 module.exports = logger
+
