@@ -43,7 +43,7 @@ bookmarksRouter
   })
 
 bookmarksRouter
-  .route('/bookmarks/:bookmark_id')
+  .route('/bookmarks/:id')
   .get((req, res) => {
     const { bookmark_id } = req.params
 
