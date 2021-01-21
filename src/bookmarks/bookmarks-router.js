@@ -13,13 +13,13 @@ bookmarksRouter
     res.json(store.bookmarks)
   })
   .post(bodyParser, (req, res) => {
+    const { title, url, description, rating } = req.body
     for (const field of ['title', 'url', 'rating']) {
       if (!req.body[field]) {
         logger.error(`${field} is required`)
         return res.status(400).send(`'${field}' is required`)
       }
     }
-    const { title, url, description, rating } = req.body
 
     if (!Number.isInteger(rating) || rating < 0 || rating > 5) {
       logger.error(`Invalid rating '${rating}' supplied`)
@@ -43,10 +43,9 @@ bookmarksRouter
   })
 
 bookmarksRouter
-  .route('/bookmarks/:id')
+  .route('/bookmarks/:bookmark_id')
   .get((req, res) => {
     const { bookmark_id } = req.params
-
     const bookmark = store.bookmarks.find(c => c.id == bookmark_id)
 
     if (!bookmark) {
